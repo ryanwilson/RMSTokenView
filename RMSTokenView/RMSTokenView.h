@@ -42,6 +42,8 @@
 
 @optional
 
+- (char)charToSplitTokenView:(RMSTokenView *)tokenView;
+
 - (void)tokenView:(RMSTokenView *)tokenView didSelectTokenWithText:(NSString *)text;
 - (void)tokenView:(RMSTokenView *)tokenView didAddTokenWithText:(NSString *)text;
 - (void)tokenView:(RMSTokenView *)tokenView didRemoveTokenWithText:(NSString *)text;

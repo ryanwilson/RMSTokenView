@@ -451,12 +451,22 @@
             [self.tokenDelegate tokenView:self didChangeText:text];
         });
     }
+    if ([self.tokenDelegate respondsToSelector:@selector(charToSplitTokenView:)]){
+        if (string.length && [string characterAtIndex: 0] == [self.tokenDelegate charToSplitTokenView: self]){
+            [self addTokenWithText:self.text];
+        }
+    }
     return YES;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [self addTokenWithText:self.text];
-    return NO;
+    if (![self.tokenDelegate respondsToSelector: @selector(charToSplitTokenView:)]){
+        [self addTokenWithText:self.text];
+        return NO;
+    }
+    else {
+        return YES;
+    }
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
